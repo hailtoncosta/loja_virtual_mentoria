@@ -1,0 +1,107 @@
+package jdev.mentoria.lojavirtual.model;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.ConstraintMode;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import jdev.mentoria.lojavirtual.enums.StatusContaReceber;
+
+@Entity
+@Table(name = "contareceber")
+@SequenceGenerator(name = "seq_contareceber", sequenceName = "seq_contareceber", initialValue = 1, allocationSize = 1)
+public class ContaReceber implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_contareceber")
+	private Long id;
+	
+	private String descricao;
+	
+	@Enumerated(EnumType.STRING)
+	private StatusContaReceber statusContaReceber;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dtPagamento;
+	
+	private BigDecimal valorTotal;
+	
+	private BigDecimal valorDesconto;
+	
+	@ManyToOne(targetEntity = Pessoa.class)
+	@JoinColumn(name = "pessoa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa_fk"))
+	private Pessoa pessoa;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public StatusContaReceber getStatusContaReceber() {
+		return statusContaReceber;
+	}
+
+	public void setStatusContaReceber(StatusContaReceber statusContaReceber) {
+		this.statusContaReceber = statusContaReceber;
+	}
+
+	public Date getDtPagamento() {
+		return dtPagamento;
+	}
+
+	public void setDtPagamento(Date dtPagamento) {
+		this.dtPagamento = dtPagamento;
+	}
+
+	public BigDecimal getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(BigDecimal valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+
+	public BigDecimal getValorDesconto() {
+		return valorDesconto;
+	}
+
+	public void setValorDesconto(BigDecimal valorDesconto) {
+		this.valorDesconto = valorDesconto;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+	
+}
