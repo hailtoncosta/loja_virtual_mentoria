@@ -3,10 +3,15 @@ package jdev.mentoria.lojavirtual.model;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -28,6 +33,11 @@ public class StatusRastreio implements Serializable {
 	private String estado;
 	
 	private String status;
+	
+	@ManyToOne
+	@JoinColumn(name = "vendaCompraLojaVirtual_id", nullable = false, 
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "vendaCompraLojaVirtual_fk"))
+	private VendaCompraLojaVirtual vendaCompraLojaVirtual;
 
 	public Long getId() {
 		return id;
