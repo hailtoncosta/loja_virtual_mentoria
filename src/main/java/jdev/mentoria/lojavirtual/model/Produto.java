@@ -23,28 +23,34 @@ public class Produto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_produto")
 	private Long id;
 	
+	@Column(nullable = false)
 	private String tipoUnidade;
 	
+	@Column(nullable = false)
 	private String nome;
 	
-	@Column(columnDefinition = "text", length = 2000)
+	@Column(columnDefinition = "text", length = 2000, nullable = false)
 	private String descricao;
 	
 	/*Nota item produto - associar*/
 	
+	@Column(nullable = false)
 	private Double peso;
 	
+	@Column(nullable = false)
 	private Double largura;
 	
+	@Column(nullable = false)
 	private Double altura;
 	
+	@Column(nullable = false)
 	private Double profundidade;
 	
+	@Column(nullable = false)
 	private BigDecimal valorVenda = BigDecimal.ZERO;
 	
+	@Column(nullable = false)
 	private Integer QtdeEstoque = 0;
-	
-	private Integer QtdeAlertaEstoque = 0;
 	
 	private String linkYoutube;
 	
@@ -52,6 +58,7 @@ public class Produto implements Serializable {
 	
 	private Integer QtdeClique = 0;
 	
+	@Column(nullable = false)
 	private Boolean ativo = Boolean.TRUE;
 
 	public Long getId() {
@@ -132,14 +139,6 @@ public class Produto implements Serializable {
 
 	public void setQtdeEstoque(Integer qtdeEstoque) {
 		QtdeEstoque = qtdeEstoque;
-	}
-
-	public Integer getQtdeAlertaEstoque() {
-		return QtdeAlertaEstoque;
-	}
-
-	public void setQtdeAlertaEstoque(Integer qtdeAlertaEstoque) {
-		QtdeAlertaEstoque = qtdeAlertaEstoque;
 	}
 
 	public String getLinkYoutube() {
